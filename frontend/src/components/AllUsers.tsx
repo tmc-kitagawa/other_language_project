@@ -1,5 +1,6 @@
 import { useState, type FC, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 interface User {
   id: number;
@@ -24,6 +25,7 @@ export const AllUsers: FC = () => {
           <p key={i}>{elem.name}</p>
         ))}
       </div>
+      <Link to="/">Homeへ</Link>
     </>
   );
 };

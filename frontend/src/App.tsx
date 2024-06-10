@@ -2,11 +2,16 @@
 // import viteLogo from '/vite.svg'
 import './App.css';
 import { AllUsers } from './components/AllUsers';
+import { Routes, Route } from 'react-router-dom';
+import { Home } from './components/Home';
 
 function App() {
   return (
     <>
-      <AllUsers />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="allusers" element={<AllUsers />} />
+      </Routes>
     </>
   );
 }
