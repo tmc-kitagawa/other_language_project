@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class Controller(val repository: Repository) {
 
-    @GetMapping("/users")
+    @GetMapping("/api/users")
     fun getUsers(): List<User> {
         return repository.getUsers()
     }
 
-    @PostMapping("/users")
+    @PostMapping("/api/users")
     fun saveUser(@RequestBody userRequest: UserRequest): String {
         return repository.saveUser(userRequest)
     }
