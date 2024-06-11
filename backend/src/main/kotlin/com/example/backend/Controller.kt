@@ -1,5 +1,6 @@
 package com.example.backend
 
+import com.example.backend.dataClass.CreateUserRequest
 import org.springframework.web.bind.annotation.*
 
 import org.springframework.core.io.ClassPathResource
