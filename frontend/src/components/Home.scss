@@ -1,0 +1,29 @@
+@import './mixin';
+
+.home-container {
+  width: 800px;
+  margin: auto;
+  button {
+    width: 300px;
+    height: 50px;
+    border-radius: 5px;
+    margin-top: 30px;
+    background-color: #359dd9;
+    color: whitesmoke;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  //   @include pc {
+  //   }
+
+  @include tab {
+    width: 500px;
+  }
+
+  @include sp {
+    width: 100%;
+  }
+}

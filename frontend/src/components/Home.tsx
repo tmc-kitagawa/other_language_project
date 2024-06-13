@@ -1,6 +1,8 @@
-import type { FC } from 'react';
+import { type FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import TextareaAutosize from 'react-textarea-autosize';
+import './Home.scss';
 
 type Input = {
   query: string;
@@ -16,24 +18,28 @@ export const Home: FC = () => {
     });
   };
 
-  const logoutHandler = () => {
-    //ここでセッショントークンを削除
-  };
+  // const logoutHandler = () => {
+  //   //ここでセッショントークンを削除
+  // };
 
   return (
     <>
-      <div>
+      <div className="home-container">
         <h1>何か質問してください</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <textarea
-            placeholder="何か質問してください"
-            {...register('query')}
-          ></textarea>
+          <div className="textarea-wrapper">
+            <TextareaAutosize
+              style={{ width: '100%', borderRadius: '5px' }}
+              minRows={5}
+              placeholder="何か質問してください"
+              {...register('query')}
+            />
+          </div>
           <button>検索</button>
         </form>
-        <button onClick={logoutHandler}>
+        {/* <button onClick={logoutHandler}>
           <a href="/login">ログアウト</a>
-        </button>
+        </button> */}
       </div>
     </>
   );

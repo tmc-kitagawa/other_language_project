@@ -1,0 +1,104 @@
+@import './mixin';
+$background: #0c0c16;
+.search-container {
+  padding-bottom: 200px;
+  flex: 1;
+
+  width: 800px;
+  .article-container {
+    border-bottom: 1px solid gray;
+
+    p {
+      text-align: left;
+    }
+
+    .source-container {
+      display: flex;
+      justify-content: flex-start;
+      gap: 20px;
+
+      .source {
+        margin: 10px;
+        padding: 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 30%;
+        color: gray;
+        background-color: whitesmoke;
+        border-radius: 10px;
+
+        p {
+          margin: 5px;
+        }
+      }
+    }
+  }
+  //   @include pc {
+  //   }
+  @include tab {
+    width: 400px;
+    .source {
+      font-size: 15px;
+    }
+  }
+
+  @include sp {
+    width: 350px;
+    .source {
+      font-size: 13px;
+    }
+  }
+}
+
+footer {
+  position: sticky;
+  bottom: 0px;
+  width: 800px;
+  background-color: $background;
+  .search-form {
+    display: flex;
+    background-color: $background;
+    padding: 5px;
+    margin-bottom: 15px;
+    border: 3px solid gray;
+    border-radius: 5px;
+
+    .textarea-container {
+      width: 100%;
+
+      .textarea {
+        width: 100%;
+        border: none;
+        background-color: #0c0c16;
+        color: whitesmoke;
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+
+    button {
+      background-color: $background;
+      border: none;
+      img {
+        height: 30px;
+        width: 30px;
+        border-radius: 10px;
+        background-color: gray;
+      }
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  @include tab {
+    width: 500px;
+  }
+
+  @include sp {
+    width: 350px;
+  }
+}

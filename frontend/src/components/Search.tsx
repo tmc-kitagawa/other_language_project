@@ -1,6 +1,8 @@
 import { useEffect, type FC, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import './Search.scss';
+import TextareaAutosize from 'react-textarea-autosize';
 // 本番用
 // import { searchHandler } from '../utils/searchHandler';
 
@@ -21,7 +23,7 @@ type Input = {
 
 export const Search: FC = () => {
   const [articles, setArticles] = useState<Article[]>([]);
-  const { register, handleSubmit } = useForm<Input>();
+  const { register, handleSubmit, reset } = useForm<Input>();
 
   const location = useLocation();
 
@@ -54,6 +56,7 @@ export const Search: FC = () => {
         searchResult: '今日の天気は晴れです。明日の天気は雨です。',
       },
     ]);
+    reset();
   };
 
   // 本番用
@@ -77,18 +80,20 @@ export const Search: FC = () => {
 
   return (
     <>
-      <div>
+      <div className="search-container">
         {articles.map(({ query, sources, searchResult }: Article, i) => (
-          <article key={i}>
+          <article className="article-container" key={i}>
             <h1>{query}</h1>
             {sources && (
               <>
                 <p>ソース</p>
-                <div>
+                <div className="source-container">
                   {sources.map(({ title, link }, i) => (
-                    <div key={i}>
+                    <div className="source" key={i}>
                       <p>{title}</p>
-                      <a href={link}>{link}</a>
+                      <a href={link} target="_brank">
+                        {link}
+                      </a>
                     </div>
                   ))}
                 </div>
@@ -103,13 +108,21 @@ export const Search: FC = () => {
           </article>
         ))}
       </div>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <textarea
-          placeholder="何か質問してください"
-          {...register('query')}
-        ></textarea>
-        <button>検索</button>
-      </form>
+      <footer>
+        <form className="search-form" onSubmit={handleSubmit(onSubmit)}>
+          <div className="textarea-container">
+            <TextareaAutosize
+              className="textarea"
+              minRows={2}
+              placeholder="何か質問してください"
+              {...register('query')}
+            />
+          </div>
+          <button>
+            <img src="/send.svg" alt="送信" />
+          </button>
+        </form>
+      </footer>
     </>
   );
 };
