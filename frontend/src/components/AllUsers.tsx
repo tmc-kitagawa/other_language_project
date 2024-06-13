@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 interface User {
   id: number;
-  name: string;
+  username: string;
 }
 
 export const AllUsers: FC = () => {
@@ -22,7 +22,7 @@ export const AllUsers: FC = () => {
       <div>
         <p>AllUsers</p>
         {allUsers?.map((elem, i) => (
-          <p key={i}>{elem.name}</p>
+          <p key={i}>{elem.username}</p>
         ))}
       </div>
       <Link to="/">Homeへ</Link>

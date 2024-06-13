@@ -14,4 +14,9 @@ class ReactController {
     fun forward(): String {
         return "forward:/"
     }
+
+    @GetMapping("/search")
+    fun forwardSearch(): String {
+        return "redirect:/"
+    }
 }
