@@ -1,12 +1,11 @@
-package com.example.backend
+package com.example.backend.Controllers
 
-import com.example.backend.dataClass.CreateUserRequest
+import com.example.backend.Repositories.Repository
+import com.example.backend.dataClass.User
+import com.example.backend.dataClass.UserRequest
 import org.springframework.web.bind.annotation.*
 
-import org.springframework.core.io.ClassPathResource
-import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RestController
 
 
@@ -19,7 +18,7 @@ class Controller(val repository: Repository) {
     }
 
     @PostMapping("/api/users")
-    fun saveUser(@RequestBody userRequest: UserRequest): String {
+        fun saveUser(@RequestBody userRequest: UserRequest): String {
         return repository.saveUser(userRequest)
     }
 }

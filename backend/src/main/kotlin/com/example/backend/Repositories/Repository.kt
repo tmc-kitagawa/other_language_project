@@ -1,5 +1,7 @@
-package com.example.backend
+package com.example.backend.Repositories
 
+import com.example.backend.dataClass.User
+import com.example.backend.dataClass.UserRequest
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.jdbc.core.RowMapper
@@ -11,6 +13,7 @@ import java.sql.ResultSet
 @Component
 class UserRowMapper: RowMapper<User> {
     override fun mapRow(rs: ResultSet, rowNum: Int): User {
+        println(rs.getString(2))
         return User(rs.getLong(1), rs.getString(2))
     }
 }
@@ -21,12 +24,11 @@ class Repository(
     @Autowired val userRowMapper: UserRowMapper
 ) {
     fun getUsers(): List<User> {
-        return jdbcTemplate.query("SELECT id, name FROM users", userRowMapper)
+        return jdbcTemplate.query("SELECT id, username FROM users", userRowMapper)
     }
 
     fun saveUser(@RequestBody userRequest: UserRequest): String {
-        println(userRequest.name)
-        jdbcTemplate.update("INSERT INTO users (name) VALUES (?)", userRequest.name)
+        jdbcTemplate.update("INSERT INTO users (username) VALUES (?)", userRequest.username)
         return "ok"
     }
 }

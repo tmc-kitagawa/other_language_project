@@ -1,5 +1,7 @@
 package com.example.backend
 
+import com.example.backend.dataClass.User
+import com.example.backend.dataClass.UserRequest
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.CoreMatchers.hasItem
 import org.hamcrest.MatcherAssert.assertThat
@@ -7,8 +9,6 @@ import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.web.client.TestRestTemplate
-import org.springframework.boot.test.web.client.getForEntity
-import org.springframework.boot.test.web.client.postForEntity
 import org.springframework.boot.test.web.server.LocalServerPort
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
@@ -43,9 +43,9 @@ class BackendApplicationTests(
 		val users = response.body!!
 		assertThat(users.size, equalTo(2))
 		assertThat(users[0].id, equalTo(1))
-		assertThat(users[0].name, equalTo("massa"))
+		assertThat(users[0].username, equalTo("masahiro"))
 		assertThat(users[1].id, equalTo(2))
-		assertThat(users[1].name, equalTo("mac"))
+		assertThat(users[1].username, equalTo("mac"))
 	}
 
 	@Test
@@ -63,6 +63,6 @@ class BackendApplicationTests(
 		val afterPost = restTemplate.getForEntity("http://localhost:$port/api/users", Array<User>::class.java)
 
 		assertThat(afterPost.body!!.size - beforePost.body!!.size, equalTo(1))
-		assertThat(afterPost.body!!.map {user: User -> user.name}, hasItem("bob"))
+		assertThat(afterPost.body!!.map {user: User -> user.username}, hasItem("bob"))
 	}
 }

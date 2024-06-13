@@ -3,6 +3,7 @@ package com.example.backend
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.http.HttpMethod
 import org.springframework.security.config.Customizer
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
@@ -43,12 +44,17 @@ class SecurityConfig {
 
     @Bean
     fun configureHttpSecurity(httpSecurity: HttpSecurity): SecurityFilterChain {
+        httpSecurity.csrf { authorize ->
+            authorize.ignoringRequestMatchers("/api/users")
+        }
         httpSecurity
             .authorizeHttpRequests(Customizer {authorize ->
                 authorize
                     .requestMatchers("/login").permitAll()
                     .requestMatchers("/signup").permitAll()
-                    .requestMatchers("/api/**").permitAll() //開発中は公開しておく
+                    .requestMatchers("/css/**").permitAll()
+                    .requestMatchers("/api/users").permitAll() //開発中は公開しておく
+                    .requestMatchers(HttpMethod.POST,"/api/users").permitAll() //開発中は公開しておく
                     .anyRequest().authenticated()
             })
         httpSecurity.formLogin { form: FormLoginConfigurer<HttpSecurity?> ->

@@ -2,22 +2,26 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>login</title>
+    <title>signup</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
+<h2>ようこそ</h2>
 <form action="#" th:action="@{/signup}" method="post">
     <div>
-        <label for="usernameInput">ユーザー名</label>
-        <input type="text" name="username" id="usernameInput">
+        <label for="usernameInput"></label>
+        <input type="text" name="username" id="usernameInput" placeholder="ユーザー名">
     </div>
     <div>
-        <label for="passwordInput">パスワード</label>
-        <input type="password" name="password" id="passwordInput">
+        <label for="passwordInput"></label>
+        <input type="password" name="password" id="passwordInput" placeholder="パスワード">
     </div>
+    <br>
+    <br>
     <div>
         <button type="submit">登録</button>
     </div>
 </form>
-<a href="/login">ログイン</a>
+<a href="/login">アカウントをお持ちの方はこちら</a>
 </body>
 </html>

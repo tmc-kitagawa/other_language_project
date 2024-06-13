@@ -3,24 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>login</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-<div th:if="${param.error}">
-    <p>ユーザー名もしくはパスワードが違います</p>
-</div>
-<form action="#" th:action="@{/login}" method="post">
-    <div>
-        <label for="usernameInput">ユーザー名</label>
-        <input type="text" name="username" id="usernameInput">
-    </div>
-    <div>
-        <label for="passwordInput">パスワード</label>
-        <input type="password" name="password" id="passwordInput">
-    </div>
-    <div>
-        <button type="submit">ログイン</button>
-    </div>
-</form>
-<a href="/signup">アカウント作成</a>
+<h2>ようこそ</h2>
+    <form action="#" th:action="@{/login}" method="post">
+        <div>
+            <label for="usernameInput"></label>
+            <input type="text" name="username" id="usernameInput" placeholder="ユーザー名">
+        </div>
+        <div>
+            <label for="passwordInput"></label>
+            <input type="password" name="password" id="passwordInput" placeholder="パスワード">
+        </div>
+        <div class="error-message" th:if="${param.error}">
+            <p>ユーザー名もしくはパスワードが違います</p>
+        </div>
+        <br>
+        <br>
+        <div>
+            <button type="submit">ログイン</button>
+        </div>
+    </form>
+    <a href="/signup">アカウント作成はこちら</a>
+
+
 </body>
 </html>

@@ -20,7 +20,7 @@ export const AllUsers: FC = () => {
   return (
     <>
       <div>
-        <p>AllUsers</p>
+        <p>管理者用ページ</p>
         {allUsers?.map((elem, i) => (
           <p key={i}>{elem.username}</p>
         ))}
