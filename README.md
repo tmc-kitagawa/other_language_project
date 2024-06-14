@@ -48,6 +48,7 @@
 - OpenAI の gpt-3.5-turbo を使用して検索内容を解析
 - Google Custom Search API を使用して最新情報を検索
 - 検索した内容を基に gpt が回答を生成
+- 回答内容の表示はストリーム形式で一文字ずつ表示される
 
 ### こだわりポイント
 
@@ -148,6 +149,10 @@ http://localhost:80 にアクセス
 
 下図のような構成でデプロイする
 ![flow](./img/flow.png)
+
+デプロイ先 URL
+
+[https://www.btc6-solomvp.net](https://www.btc6-solomvp.net)
 
 参考資料は下記
 
