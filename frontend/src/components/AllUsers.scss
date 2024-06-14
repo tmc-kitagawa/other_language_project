@@ -1,0 +1,31 @@
+$background: #0c0c16;
+
+.allusers-container {
+  display: flex;
+  flex-direction: column;
+
+  .user-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+
+    p {
+      font-size: 30px;
+    }
+
+    button {
+      background-color: gray;
+      height: 40px;
+      width: 45px;
+      border-radius: 10px;
+      &:hover {
+        cursor: pointer;
+      }
+      img {
+        height: 30px;
+        width: 30px;
+      }
+    }
+  }
+}

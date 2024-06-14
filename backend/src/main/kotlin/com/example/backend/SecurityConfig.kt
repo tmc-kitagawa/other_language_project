@@ -45,7 +45,7 @@ class SecurityConfig {
     @Bean
     fun configureHttpSecurity(httpSecurity: HttpSecurity): SecurityFilterChain {
         httpSecurity.csrf { authorize ->
-            authorize.ignoringRequestMatchers("/api/users")
+            authorize.ignoringRequestMatchers("/api/users/**")
         }
         httpSecurity
             .authorizeHttpRequests(Customizer {authorize ->
@@ -53,8 +53,9 @@ class SecurityConfig {
                     .requestMatchers("/login").permitAll()
                     .requestMatchers("/signup").permitAll()
                     .requestMatchers("/css/**").permitAll()
-                    .requestMatchers("/api/users").permitAll() //開発中は公開しておく
-                    .requestMatchers(HttpMethod.POST,"/api/users").permitAll() //開発中は公開しておく
+                    .requestMatchers("/api/users").permitAll()
+                    .requestMatchers(HttpMethod.POST,"/api/users").permitAll()
+                    .requestMatchers(HttpMethod.DELETE,"/api/users/**").permitAll()  // 開発用
                     .anyRequest().authenticated()
             })
         httpSecurity.formLogin { form: FormLoginConfigurer<HttpSecurity?> ->

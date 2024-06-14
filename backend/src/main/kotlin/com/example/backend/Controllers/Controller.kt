@@ -18,7 +18,12 @@ class Controller(val repository: Repository) {
     }
 
     @PostMapping("/api/users")
-        fun saveUser(@RequestBody userRequest: UserRequest): String {
+    fun saveUser(@RequestBody userRequest: UserRequest): String {
         return repository.saveUser(userRequest)
+    }
+
+    @DeleteMapping("/api/users/{username}")
+    fun deleteUser(@PathVariable("username") username: String): String {
+        return repository.deleteUser(username)
     }
 }

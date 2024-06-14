@@ -13,7 +13,6 @@ import java.sql.ResultSet
 @Component
 class UserRowMapper: RowMapper<User> {
     override fun mapRow(rs: ResultSet, rowNum: Int): User {
-        println(rs.getString(2))
         return User(rs.getLong(1), rs.getString(2))
     }
 }
@@ -29,6 +28,12 @@ class Repository(
 
     fun saveUser(@RequestBody userRequest: UserRequest): String {
         jdbcTemplate.update("INSERT INTO users (username) VALUES (?)", userRequest.username)
+        return "ok"
+    }
+
+    fun deleteUser(username: String): String {
+        jdbcTemplate.update("DELETE FROM authorities WHERE username = (?)", username)
+        jdbcTemplate.update("DELETE FROM users WHERE username = (?)", username)
         return "ok"
     }
 }
