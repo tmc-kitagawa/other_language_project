@@ -27,4 +27,4 @@ jobs:
          # SSH接続して、git pullする
          echo "${{ secrets.PRIVATE_KEY }}" > private_key
          chmod 600 private_key
-         ssh -oStrictHostKeyChecking=no ${{ secrets.USER_NAME }}@${{ secrets.HOST_NAME }} -i private_key "cd btc6-otherlangproject/other_language_project/ && git fetch github:tmc-kitagawa/other_language_project.git && git pull github:tmc-kitagawa/other_language_project.git"
+         ssh -oStrictHostKeyChecking=no ${{ secrets.USER_NAME }}@${{ secrets.HOST_NAME }} -i private_key "cd btc6-otherlangproject/other_language_project/ && git fetch git@github.com:tmc-kitagawa/other_language_project.git && git pull git@github.com:tmc-kitagawa/other_language_project.git"
