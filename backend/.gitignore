@@ -43,3 +43,5 @@ out/
 
 src/main/resources/static/assets
 src/main/resources/static/*.svg
+
+.env
