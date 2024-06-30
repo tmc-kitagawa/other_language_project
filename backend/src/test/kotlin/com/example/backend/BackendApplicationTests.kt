@@ -37,14 +37,14 @@ class BackendApplicationTests(
 
 	@Test
 	fun `GETリクエストはOKステータスを返す` () {
-		val response = restTemplate.getForEntity("${env.getProperty("spring.host.url")}:$port/api/users", String::class.java)
-//		val response = restTemplate.getForEntity("http://localhost:$port/api/users", String::class.java)
+//		val response = restTemplate.getForEntity("${env.getProperty("spring.host.url")}:$port/api/users", String::class.java)
+		val response = restTemplate.getForEntity("http://localhost:$port/api/users", String::class.java)
 		assertThat(response.statusCode, equalTo(HttpStatus.OK))
 	}
 
 	@Test
 	fun `GETリクエストはuserオブジェクトのリストを返す` () {
-		val response = restTemplate.getForEntity("${env.getProperty("spring.host.url")}:$port/api/users", Array<User>::class.java)
+		val response = restTemplate.getForEntity("http://localhost:$port/api/users", Array<User>::class.java)
 		assertThat(response.headers.contentType, equalTo(MediaType.APPLICATION_JSON))
 		val users = response.body!!
 		assertThat(users.size, equalTo(2))
@@ -57,16 +57,16 @@ class BackendApplicationTests(
 	@Test
 	fun `POSTリクエストはOKステータスを返す` () {
 		val request = UserRequest("bob")
-		val response = restTemplate.postForEntity("${env.getProperty("spring.host.url")}:$port/api/users", request, String::class.java)
+		val response = restTemplate.postForEntity("http://localhost:$port/api/users", request, String::class.java)
 		assertThat(response.statusCode, equalTo(HttpStatus.OK))
 	}
 
 	@Test
 	fun `POSTリクエストはUserオブジェクトを格納する` () {
 		val request = UserRequest("bob")
-		val beforePost = restTemplate.getForEntity("${env.getProperty("spring.host.url")}:$port/api/users", Array<User>::class.java)
-		val response = restTemplate.postForEntity("${env.getProperty("spring.host.url")}:$port/api/users", request, String::class.java)
-		val afterPost = restTemplate.getForEntity("${env.getProperty("spring.host.url")}:$port/api/users", Array<User>::class.java)
+		val beforePost = restTemplate.getForEntity("http://localhost:$port/api/users", Array<User>::class.java)
+		val response = restTemplate.postForEntity("http://localhost:$port/api/users", request, String::class.java)
+		val afterPost = restTemplate.getForEntity("http://localhost:$port/api/users", Array<User>::class.java)
 
 		assertThat(afterPost.body!!.size - beforePost.body!!.size, equalTo(1))
 		assertThat(afterPost.body!!.map {user: User -> user.username}, hasItem("bob"))
